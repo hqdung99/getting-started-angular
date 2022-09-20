@@ -1,15 +1,1 @@
-<h1 [ttClass]="red" *ttIf="false">
-  <div>{{title}}</div>
-</h1>
-
-<ul>
-  <li *ngFor="let movie of movies; let i=index;trackBy: trackByFn;">
-    {{i}}.{{movie.title}} - {{movie.director}} <button (click)="remove(i)">remove</button>
-  </li>
-</ul>
-
-<button (click)="Refresh()">Refresh</button><br />
-
-Title: <input input type="text" [(ngModel)]="mTitle"/>
-Director: <input input type="text" [(ngModel)]="mDirector"/>
-<button (click)="addMovie()" ttToolTip toolTip="Hello World">Add</button>
+<p>{{toDate}}</p>

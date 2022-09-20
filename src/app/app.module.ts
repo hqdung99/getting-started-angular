@@ -11,7 +11,8 @@ import { TtClassDirective } from './directives/tt-class.directive';
 import { ttIfDirective } from './directives/tt-if.directive';
 import { TtToggleDirective } from './directives/TtToggleDirective.directive';
 import { TtToolTipDirective } from './directives/TtTooltipDirective.directive';
-
+import { TempConvertorPipe } from './pipes/temp-convertor.pipe';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [				
@@ -22,14 +23,17 @@ import { TtToolTipDirective } from './directives/TtTooltipDirective.directive';
     TtClassDirective,
     ttIfDirective,
     TtToggleDirective,
-    TtToolTipDirective
+    TtToolTipDirective,
+    TempConvertorPipe
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

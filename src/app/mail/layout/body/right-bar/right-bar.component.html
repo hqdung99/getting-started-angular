@@ -1,3 +1,10 @@
-<div class="border-2 border-green-500 h-full">
-  right-bar works!
+<div class="h-full overflow-y-auto">
+  <div
+    *ngFor="let item of googleApps"
+    class="flex justify-center items-center"
+  >
+    <button class="p-2">
+      <img [src]="item.icon" class="w-7 h-7" />
+    </button>
+  </div>
 </div>

@@ -1,3 +1,29 @@
-<div class="border-2 border-green-500 h-full">
-  {{currentTypeList}}
+<div class="h-full overflow-hidden flex flex-col">
+  <div class="flex">
+    <div
+      *ngFor="let item of mailTypeList"
+      class="flex-1 flex justify-center items-center cursor-pointer"
+      [ngClass]="{
+        'bg-gray-400 text-white': item.type === currentTypeMail
+      }"
+      (click)="setCurrentMailType(item.type)"
+    >
+      <ion-icon [name]="item.icon" class="p-2"></ion-icon>
+      {{item.title}}
+    </div>
+  </div>
+  <div class="border-4 border-blue-600 flex-1 overflow-y-auto">
+    <div
+      *ngFor="let item of mailList[currentTypeMail]"
+      class="border-2 border-red-500 p-2 flex items-center"
+    >
+      <input type="checkbox" />
+      <button>
+        <ion-icon name="star-outline"></ion-icon>
+      </button>
+      {{item.from}}
+      {{item.title}}
+      {{item.time | date: 'MM/dd'}}
+    </div>
+  </div>
 </div>

@@ -1,11 +1,15 @@
 import { NgModule } from "@angular/core";
 
-import { MailService } from "./services";
+import {
+  MailService,
+  ParseJsonService
+} from "./services";
 
 @NgModule({
   imports: [],
   providers: [
-    MailService
+    MailService,
+    ParseJsonService
   ],
   declarations: []
 })

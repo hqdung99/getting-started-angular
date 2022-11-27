@@ -3,8 +3,7 @@ import { MailService } from 'src/app/core';
 
 @Component({
   selector: 'app-mail-list',
-  templateUrl: './mail-list.component.html',
-  styleUrls: ['./mail-list.component.scss']
+  templateUrl: './mail-list.component.html'
 })
 export class MailListComponent implements OnInit {
   currentTypeList!: string;

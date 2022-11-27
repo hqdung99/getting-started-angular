@@ -1,4 +1,5 @@
 import { NgModule } from "@angular/core";
+import { IonicModule } from "@ionic/angular";
 
 import { MailRoutingModule } from "./mail-routing.module";
 import {
@@ -13,7 +14,8 @@ import { SharedModule } from "../shared/shared.module";
 @NgModule({
   imports: [
     MailRoutingModule,
-    SharedModule
+    SharedModule,
+    IonicModule
   ],
   declarations: [
     // Main

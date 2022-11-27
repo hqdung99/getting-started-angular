@@ -1,5 +1,14 @@
-<div class="border-2 border-green-500 h-full">
-  <li *ngFor="let item of listMailType" (click)="selectMailType(item.type)">
-    {{item.title}}ss
-  </li>
+<div class="border-2 border-green-500 h-full overflow-y-auto">
+  <div
+    *ngFor="let item of listMailType"
+    (click)="selectMailType(item.type)"
+    class="flex items-center cursor-pointer pr-2"
+    [ngClass]="{
+      'bg-gray-400': currentTypeList === item.type,
+      'text-white': currentTypeList === item.type
+    }"
+  >
+    <ion-icon [name]="item.icon" class="p-2"></ion-icon>
+    {{currentExpand ? item.title : ''}}
+  </div>
 </div>

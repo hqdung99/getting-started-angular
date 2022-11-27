@@ -1,3 +1,27 @@
-<div class="border-4 border-red-500">
-  header works!
+<div class="flex bg-gray-600 items-center p-4/">
+  <!-- Menu -->
+  <button class="flex items-center p-2" (click)="setExpandRightbar()">
+    <ion-icon name="menu-outline" class="text-white text-2xl"></ion-icon>
+  </button>
+  <img class="h-12" src="assets/images/logo_gmail.png" />
+
+  <!-- Search bar -->
+  <div class="flex items-center bg-white rounded-lg overflow-hidden flex-1">
+    <ion-icon name="search-outline" class="text-2xl p-2"></ion-icon>
+    <input placeholder="Search mail" class="p-2" />
+  </div>
+
+  <!-- Option -->
+  <button class="flex items-center p-2">
+    <ion-icon name="help-outline" class="text-white text-2xl"></ion-icon>
+  </button>
+  <button class="flex items-center p-2">
+    <ion-icon name="settings-outline" class="text-white text-2xl"></ion-icon>
+  </button>
+  <button class="flex items-center p-2">
+    <ion-icon name="apps-outline" class="text-white text-2xl"></ion-icon>
+  </button>
+  <button class="flex items-center p-2">
+    <img src="assets/images/avatar.jpeg" class="border-red-500 rounded-full h-10"/>
+  </button>  
 </div>

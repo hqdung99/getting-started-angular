@@ -2,13 +2,13 @@
   <div
     *ngFor="let item of listMailType"
     (click)="selectMailType(item.type)"
-    class="flex items-center cursor-pointer pr-2"
+    class="flex items-center cursor-pointer"
     [ngClass]="{
-      'bg-gray-400': currentTypeList === item.type,
-      'text-white': currentTypeList === item.type
+      'text-white bg-[#ffffff6f]': currentTypeList === item.type,
+      'pr-10': currentExpand
     }"
   >
-    <ion-icon [name]="item.icon" class="p-2"></ion-icon>
+    <ion-icon [name]="item.icon" class="p-3 text-[18px]"></ion-icon>
     {{currentExpand ? item.title : ''}}
   </div>
 </div>

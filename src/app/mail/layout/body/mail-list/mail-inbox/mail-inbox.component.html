@@ -1,0 +1,66 @@
+<div
+  [ngClass]="{
+    hidden: !!currentSelectMail
+  }"
+  class="h-full flex flex-col overflow-hidden"
+>
+  <div class="flex">
+    <div
+      *ngFor="let item of mailTypeList"
+      class="flex-1 flex justify-center items-center cursor-pointer p-[2px]"
+      [ngClass]="{
+        'text-blue-600 border-b-2': item.type === currentTypeMail
+      }"
+      (click)="setCurrentMailType(item.type)"
+    >
+      <ion-icon [name]="item.icon" class="p-2 text-[18px]"></ion-icon>
+      {{ item.title }}
+    </div>
+  </div>
+  <div class="flex-1 overflow-y-auto">
+    <div
+      *ngFor="let item of mailList[currentTypeMail]"
+      class="p-2 flex items-center hover:shadow-md cursor-pointer"
+      (click)="selectCurrentMail.emit(item)"
+    >
+      <div class="p-1">
+        <input
+          type="checkbox"
+          [checked]="item.checked"
+          (change)="updateCheckedMail.emit({ currentTypeMail, id: item.id, checked: !item.checked })"
+        />
+      </div>
+      <button
+        class="flex items-center p-2"
+        (click)="updateStarMail.emit({ currentTypeMail, id: item.id, star: !item.star })"
+      >
+        <ion-icon
+          name="star-outline"
+          [ngClass]="{
+            hidden: item.star
+          }"
+        ></ion-icon>
+        <ion-icon
+          name="star"
+          class="text-yellow-500"
+          [ngClass]="{
+            hidden: !item.star
+          }"
+        ></ion-icon>
+      </button>
+      <div class="p-2 flex-1">
+        {{ item.from }}
+        {{ item.title }}
+        {{ item.time | date: "MM/dd" }}
+      </div>
+      <div class="flex">
+        <button
+          class="flex items-center p-2"
+          (click)="deleteMailList.emit({ currentTypeMail, id: item.id })"
+        >
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

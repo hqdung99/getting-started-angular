@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { MailList } from "../models";
+import { Mail, MailList, MailType } from "../models";
 import { ParseJsonService } from "./parse-json.service";
 
 @Injectable()
@@ -35,4 +35,35 @@ export class MailService {
       this.mailListSubject.next(data);
     })
   }
+
+  updateMailList(type: MailType, id: any, value: Partial<Mail>) {
+    const currentMailList = this.mailListSubject.getValue();
+    if (currentMailList?.[type]) {
+      const newMailList = {
+        ...currentMailList,
+        [type]: currentMailList?.[type].map((item) => {
+          if (item.id === id) {
+            return {
+              ...item,
+              ...value
+            };
+          }
+          return item;
+        })
+      };
+      this.mailListSubject.next(newMailList);
+    }
+  }
+
+  deleteMailList(type: MailType, id: any) {
+    const currentMailList = this.mailListSubject.getValue();
+    if (currentMailList?.[type]) {
+      const newMailList = {
+        ...currentMailList,
+        [type]: currentMailList?.[type].filter((item) => item.id !== id)
+      };
+      this.mailListSubject.next(newMailList);
+    }
+  }
+
 }

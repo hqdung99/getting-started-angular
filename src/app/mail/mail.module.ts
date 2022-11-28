@@ -6,7 +6,10 @@ import {
   HeaderComponent,
   MailBarComponent,
   MailListComponent,
-  RightBarComponent
+  RightBarComponent,
+  MailDetailComponent,
+  MailInboxComponent,
+  MailStarComponent
 } from "./layout";
 import { MailComponent } from "./mail.component";
 import { SharedModule } from "../shared/shared.module";
@@ -24,7 +27,10 @@ import { SharedModule } from "../shared/shared.module";
     HeaderComponent,
     MailBarComponent,
     MailListComponent,
-    RightBarComponent
+    RightBarComponent,
+    MailDetailComponent,
+    MailInboxComponent,
+    MailStarComponent
   ]
 })
 export class MailModule {}

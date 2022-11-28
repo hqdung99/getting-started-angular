@@ -5,4 +5,6 @@ export interface Mail {
   id: any;
   time: any;
   content: any;
+  star?: any;
+  checked?: boolean;
 }

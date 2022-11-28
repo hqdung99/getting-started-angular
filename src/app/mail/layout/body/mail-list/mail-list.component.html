@@ -1,33 +1,19 @@
-<div class="h-full overflow-hidden flex flex-col bg-[#eef1ebc2] rounded-[20px]">
-  <div class="flex">
-    <div
-      *ngFor="let item of mailTypeList"
-      class="flex-1 flex justify-center items-center cursor-pointer p-[2px]"
-      [ngClass]="{
-        'text-blue-600 border-b-2': item.type === currentTypeMail
-      }"
-      (click)="setCurrentMailType(item.type)"
-    >
-      <ion-icon [name]="item.icon" class="p-2 text-[18px]"></ion-icon>
-      {{ item.title }}
-    </div>
-  </div>
-  <div class="flex-1 overflow-y-auto">
-    <div
-      *ngFor="let item of mailList[currentTypeMail]"
-      class="p-2 flex items-center"
-    >
-      <div class="p-1">
-        <input type="checkbox" />
-      </div>
-      <button class="flex items-center p-2">
-        <ion-icon name="star-outline"></ion-icon>
-      </button>
-      <div class="p-2">
-        {{ item.from }}
-        {{ item.title }}
-        {{ item.time | date: "MM/dd" }}
-      </div>
-    </div>
-  </div>
+<div class="h-full bg-[#eef1ebc2] rounded-[20px] overflow-hidden">
+  <app-mail-inbox
+    *ngIf="currentTypeList === 'INBOX'"
+    [currentSelectMail]="currentSelectMail"
+    [mailList]="mailList"
+    (selectCurrentMail)="selectCurrentMail($event)"
+    (updateCheckedMail)="
+      updateCheckedMail($event.currentTypeMail, $event.id, $event.checked)
+    "
+    (updateStarMail)="
+      updateStarMail($event.currentTypeMail, $event.id, $event.star)
+    "
+    (deleteMailList)="deleteMailList($event.currentTypeMail, $event.id)"
+  ></app-mail-inbox>
+  <app-mail-detail
+    [currentSelectMail]="currentSelectMail"
+    (selectCurrentMail)="selectCurrentMail($event)"
+  ></app-mail-detail>
 </div>

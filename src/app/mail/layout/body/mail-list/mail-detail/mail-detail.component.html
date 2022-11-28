@@ -1,0 +1,18 @@
+<div *ngIf="currentSelectMail">
+  <div class="bg-[#cdcccd]">
+    <button class="px-4 py-2" (click)="selectMail()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+  </div>
+  <div class="p-4">
+    <div class="font-bold">
+      {{ currentSelectMail?.from }}
+    </div>
+    <div>
+      {{ currentSelectMail?.title }}
+    </div>
+    <div>
+      {{ currentSelectMail?.time | date: "MM/dd" }}
+    </div>
+  </div>
+</div>

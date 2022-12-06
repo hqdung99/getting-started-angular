@@ -9,6 +9,10 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./mail/mail.module').then((m) => m.MailModule)
+  },
+  {
+    path: 'mp3',
+    loadChildren: () => import('./mp3-cutter/mp3-cutter.module').then((m) => m.Mp3CutterModule)
   }
 ];
 

@@ -2,6 +2,11 @@
   "name": "getting-started",
   "version": "0.0.0",
   "main": "app.js",
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -21,7 +26,9 @@
     "@angular/platform-browser-dynamic": "~12.1.0",
     "@angular/router": "~12.1.0",
     "@ionic/angular": "^6.3.8",
+    "fs": "0.0.1-security",
     "ionicons": "^6.0.4",
+    "mp3-cutter": "^1.0.6",
     "ngx-electron": "^2.2.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",

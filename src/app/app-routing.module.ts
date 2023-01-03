@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'mp3',
     loadChildren: () => import('./mp3-cutter/mp3-cutter.module').then((m) => m.Mp3CutterModule)
+  },
+  {
+    path: 'record-media',
+    loadChildren: () => import('./record-media/record-media.module').then((m) => m.RecordMediaModule)
   }
 ];
 

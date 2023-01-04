@@ -36,4 +36,43 @@
     <source [src]="audioBlobUrl" type="audio/mp3" />
   </audio>
 
+  <!-- Video -->
+  <div>Video</div>
+  <button
+    (click)="startVideoRecording()"
+    class="p-2 bg-green-400 rounded-sm text-white m-2"
+    *ngIf="state === 'NONE'"
+  >
+    Start recording video
+  </button>
+  <button
+    *ngIf="state === 'RECORDING'"
+    (click)="stopVideoRecording()"
+    class="p-2 bg-green-400 rounded-sm text-white m-2"
+  >
+    Stop recording video
+  </button>
+  <button
+    *ngIf="state === 'RECORDED'"
+    (click)="downloadVideoRecorded()"
+    class="p-2 bg-green-400 rounded-sm text-white m-2"
+  >
+    Download recorded video
+  </button>
+  <button
+    *ngIf="state === 'RECORDED'"
+    (click)="clearVideoRecord()"
+    class="p-2 bg-green-400 rounded-sm text-white m-2"
+  >
+    Clear Video Record
+  </button>
+  <video
+    #videoElement
+    class="w-[500px] h-[500px] m-2"
+    controls
+    autoPlay
+    playsInline
+  >
+    <source [src]="videoBlobUrl" />
+  </video>
 </div>

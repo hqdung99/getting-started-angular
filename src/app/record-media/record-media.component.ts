@@ -1,6 +1,9 @@
-import { ChangeDetectorRef, Component, SimpleChanges, Type } from "@angular/core";
+import { ChangeDetectorRef, Component, SimpleChanges, Type, ViewChild } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { AudioRecordingService } from "./audio-recording.service";
+import { VideoRecordingService } from "./video-recording.service";
+
+type RecordState = 'NONE' | 'RECORDING' | 'RECORDED';
 
 @Component({
   selector: 'record-media-compoennt',
@@ -8,15 +11,20 @@ import { AudioRecordingService } from "./audio-recording.service";
   styleUrls: ['./record-media.component.css']
 })
 export class RecordMediaComponent {
+  @ViewChild('videoElement') videoElement: any;
   isAudioRecording = false;
   audioRecordedTime: any;
   audioBlob: any;
   audioName: any;
   audioBlobUrl: any;
+  video: any;
+  videoBlobUrl: any;
+  state: RecordState = 'NONE';
 
   constructor(
     private ref: ChangeDetectorRef,
     private audioRecordingService: AudioRecordingService,
+    private videoRecordingService: VideoRecordingService,
     private sanitizer: DomSanitizer
   ) {
     // Audio
@@ -36,18 +44,52 @@ export class RecordMediaComponent {
       this.audioBlobUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(data.blob));
       this.ref.detectChanges();
     });
+
+    // Video
+    this.videoRecordingService.getMediaStream().subscribe((data) => {
+      this.video.srcObject = data;
+      this.ref.detectChanges();
+    })
+
+    this.videoRecordingService.getBlob().subscribe((data) => {
+      this.videoBlobUrl = this.sanitizer.bypassSecurityTrustUrl(data);
+      console.log('this.videoBlobUrl: ', this.videoBlobUrl);
+      this.video.srcObject = null;
+      this.ref.detectChanges();
+    });
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-    //Add '${implements OnChanges}' to the class.
+  ngOnChanges(changes: SimpleChanges): void {}
+
+  ngAfterViewInit(): void {
+    this.video = this.videoElement.nativeElement;
   }
 
-  ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
+  // Video
+  startVideoRecording() {
+    this.state = 'RECORDING'
+    this.videoRecordingService.startRecording();
   }
 
+  stopVideoRecording() {
+    this.state = 'RECORDED';
+    this.video.srcObject = null;
+    this.videoRecordingService.stopRecording();
+    this.ref.detectChanges();
+  }
+
+  downloadVideoRecorded() {
+    this.videoRecordingService.downloadRecordedVideo();
+  }
+
+  clearVideoRecord() {
+    this.state = 'NONE';
+    this.videoRecordingService.clearVideoRecord();
+    this.video.srcObject = null;
+    this.videoBlobUrl = null;
+  }
+
+  // Audio
   startAudioRecording() {
     if (!this.isAudioRecording) {
       this.isAudioRecording = true;
